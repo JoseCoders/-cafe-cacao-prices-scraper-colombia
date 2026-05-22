@@ -24,11 +24,11 @@ async function scrapeCacao() {
     const usdTon = closes.filter(v => v !== null).pop();
 
     // TRM (COP/USD)
-    const { data: dataTRM } = await axios.get(
-      'https://query1.finance.yahoo.com/v8/finance/chart/COP=X',
-      { timeout: 10000, headers: { 'User-Agent': 'Mozilla/5.0' } }
-    );
-    const trm = dataTRM.chart.result[0].meta.regularMarketPrice;
+const { data: dataTRM } = await axios.get(
+  'https://www.datos.gov.co/resource/mcec-87by.json?$limit=1&$order=vigenciadesde DESC',
+  { timeout: 10000, headers: { 'User-Agent': 'Mozilla/5.0' } }
+);
+const trm = parseFloat(dataTRM[0].valor);
 
     if (usdTon && trm) {
       resultado.precio_usd_ton = usdTon;
