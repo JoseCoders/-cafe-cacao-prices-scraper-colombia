@@ -1,0 +1,13 @@
+{
+  "name": "cafe-cacao-prices-scraper-colombia",
+  "version": "1.0.0",
+  "description": "Scraper automático de precios café y cacao Colombia",
+  "main": "scraper/index.js",
+  "scripts": {
+    "scrape": "node scraper/index.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0"
+  }
+}
