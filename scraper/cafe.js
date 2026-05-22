@@ -17,7 +17,7 @@ async function scrapeCafe() {
   try {
     // Precio café Bolsa NY - cierre del día anterior
     const { data: dataCafe } = await axios.get(
-      'https://query1.finance.yahoo.com/v8/finance/chart/KC=F?range=2d&interval=1d',
+      'https://query1.finance.yahoo.com/v8/finance/chart/KCN26.NYB?range=2d&interval=1d',
       { timeout: 10000, headers: { 'User-Agent': 'Mozilla/5.0' } }
     );
     const bolsaNY = dataCafe.chart.result[0].indicators.quote[0].close[0];
