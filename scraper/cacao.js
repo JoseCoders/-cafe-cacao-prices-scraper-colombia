@@ -20,8 +20,9 @@ async function scrapeCacao() {
       'https://query1.finance.yahoo.com/v8/finance/chart/CC=F?range=2d&interval=1d',
       { timeout: 10000, headers: { 'User-Agent': 'Mozilla/5.0' } }
     );
-    const closes = dataCacao.chart.result[0].indicators.quote[0].close;
-    const usdTon = closes.filter(v => v !== null).pop();
+const closes = dataCacao.chart.result[0].indicators.quote[0].close;
+const validos = closes.filter(v => v !== null);
+const usdTon = validos[validos.length - 2] ?? validos[validos.length - 1];
 
     // TRM (COP/USD)
 const { data: dataTRM } = await axios.get(
