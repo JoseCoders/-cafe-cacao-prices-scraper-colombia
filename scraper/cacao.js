@@ -1,84 +1,47 @@
 const axios = require('axios');
-const cheerio = require('cheerio');
 
 const REFERENCIA = {
-  usd_ton: 8_800,
-  tasa_cambio: 4_200,
+  precio_usd_ton: 8800,
+  tasa_cambio: 4200,
 };
-
-const RANGOS = {
-  usd:  { min: 1_500, max: 20_000 },
-  tasa: { min: 2_500, max: 7_500  },
-};
-
-function limpiarNumero(str, min, max) {
-  if (!str) return null;
-  const limpio = str.replace(/[^\d,\.]/g, '').replace(',', '.');
-  const num = parseFloat(limpio);
-  if (!isNaN(num) && num >= min && num <= max) return num;
-  return null;
-}
-
-async function scrapeTasa() {
-  try {
-    const { data } = await axios.get(
-      'https://dolar.wilkinsonpc.com.co/divisas/dolar.html',
-      { timeout: 12000, headers: { 'User-Agent': 'Mozilla/5.0' } }
-    );
-    const $ = cheerio.load(data);
-    let tasa = null;
-    $('*').each((i, el) => {
-      if (tasa) return;
-      const m = $(el).text().match(/([\d]{1,2}\.[\d]{3}(?:[,\.]\d{2})?)/);
-      if (m) tasa = limpiarNumero(m[1], RANGOS.tasa.min, RANGOS.tasa.max);
-    });
-    return tasa;
-  } catch {
-    return null;
-  }
-}
 
 async function scrapeCacao() {
   const resultado = {
-    fuente: 'ICE / FEPCACAO',
+    fuente: 'ICE Futures / Yahoo Finance',
     en_vivo: false,
-    precio_usd_ton: REFERENCIA.usd_ton,
+    precio_usd_ton: REFERENCIA.precio_usd_ton,
     tasa_cambio: REFERENCIA.tasa_cambio,
     timestamp: new Date().toISOString(),
   };
 
   try {
-    const { data } = await axios.get('https://www.fepcacao.com.co/', {
-      timeout: 12000,
-      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; PreciosAgroBot/1.0)' },
-    });
+    // Precio cacao (USD/ton)
+    const { data: dataCacao } = await axios.get(
+      'https://query1.finance.yahoo.com/v8/finance/chart/CC=F',
+      { timeout: 10000, headers: { 'User-Agent': 'Mozilla/5.0' } }
+    );
+    const usdTon = dataCacao.chart.result[0].meta.regularMarketPrice;
 
-    const $ = cheerio.load(data);
-    let usdTon = null;
+    // TRM (COP/USD)
+    const { data: dataTRM } = await axios.get(
+      'https://query1.finance.yahoo.com/v8/finance/chart/COP=X',
+      { timeout: 10000, headers: { 'User-Agent': 'Mozilla/5.0' } }
+    );
+    const trm = dataTRM.chart.result[0].meta.regularMarketPrice;
 
-    $('*').each((i, el) => {
-      if (usdTon) return;
-      const m = $(el).text().match(/USD[^\d]*([\d\.\,]+)/i);
-      if (m) usdTon = limpiarNumero(m[1], RANGOS.usd.min, RANGOS.usd.max);
-    });
-
-    if (usdTon) {
+    if (usdTon && trm) {
       resultado.precio_usd_ton = usdTon;
+      resultado.tasa_cambio = trm;
       resultado.en_vivo = true;
     }
   } catch (err) {
-    resultado.error_fepcacao = err.message;
+    resultado.error = err.message;
   }
 
-  // Tasa de cambio
-  const tasa = await scrapeTasa();
-  if (tasa) resultado.tasa_cambio = tasa;
-
-  // Derivados
   resultado.precio_cop_ton = Math.round(resultado.precio_usd_ton * resultado.tasa_cambio);
-  resultado.precio_cop_kg  = Math.round(resultado.precio_cop_ton / 1000);
-  resultado.precio_arroba  = Math.round(resultado.precio_cop_kg * 12.5);
-  resultado.semaforo       = getSemaforoCacao(resultado.precio_usd_ton);
+  resultado.precio_cop_kg = Math.round(resultado.precio_cop_ton / 1000);
+  resultado.precio_arroba = Math.round(resultado.precio_cop_kg * 12.5);
+  resultado.semaforo = getSemaforoCacao(resultado.precio_usd_ton);
 
   return resultado;
 }
