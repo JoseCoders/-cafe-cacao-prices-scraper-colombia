@@ -1,1 +1,25 @@
-{}
+{
+  "generado": "2025-01-01T00:00:00.000Z",
+  "cafe": {
+    "fuente": "FNC",
+    "en_vivo": false,
+    "precio_carga": 1580000,
+    "bolsa_ny": 225,
+    "tasa_cambio": 4200,
+    "precio_kg": 12640,
+    "precio_arroba": 158000,
+    "semaforo": "normal",
+    "timestamp": "2025-01-01T00:00:00.000Z"
+  },
+  "cacao": {
+    "fuente": "ICE / FEPCACAO",
+    "en_vivo": false,
+    "precio_usd_ton": 8800,
+    "tasa_cambio": 4200,
+    "precio_cop_ton": 36960000,
+    "precio_cop_kg": 36960,
+    "precio_arroba": 462000,
+    "semaforo": "alto",
+    "timestamp": "2025-01-01T00:00:00.000Z"
+  }
+}
