@@ -1,4 +1,3 @@
-
 name: Scraper Precios Cafe y Cacao Colombia
 
 on:
@@ -18,8 +17,14 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Instalar pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
       - name: Instalar dependencias
-        run: npm install
+        run: pnpm install
+        working-directory: scraper
 
       - name: Ejecutar scraper
         run: node scraper/index.js
