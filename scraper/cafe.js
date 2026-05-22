@@ -39,7 +39,7 @@ async function scrapeCafe() {
   }
 
   // Fórmula FNC: precio carga = bolsa_ny (¢/lb) × 2.2046 × 125kg × TRM / 100
-  resultado.precio_carga = Math.round(resultado.bolsa_ny * 2.2046 * 125 * resultado.tasa_cambio / 100 * 0.802);
+  resultado.precio_carga = Math.round(resultado.bolsa_ny * resultado.tasa_cambio * 2.2022);
   resultado.precio_kg = Math.round(resultado.precio_carga / 125);
   resultado.precio_arroba = Math.round(resultado.precio_kg * 12.5);
   resultado.semaforo = getSemaforoCafe(resultado.precio_carga);
