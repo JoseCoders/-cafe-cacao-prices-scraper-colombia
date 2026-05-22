@@ -20,7 +20,7 @@ async function main() {
     cacao,
   };
 
-  const rutaSalida = path.join(__dirname, '..', 'data', 'precios.json');
+  const rutaSalida = path.join(__dirname, 'data', 'precios.json');
   fs.writeFileSync(rutaSalida, JSON.stringify(salida, null, 2), 'utf8');
   console.log('precios.json actualizado en', rutaSalida);
 }
