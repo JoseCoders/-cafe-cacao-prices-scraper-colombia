@@ -15,12 +15,12 @@ async function scrapeCafe() {
   };
 
   try {
-    // Precio café Bolsa NY (¢/lb)
+    // Precio café Bolsa NY - cierre del día anterior
     const { data: dataCafe } = await axios.get(
-      'https://query1.finance.yahoo.com/v8/finance/chart/KC=F',
+      'https://query1.finance.yahoo.com/v8/finance/chart/KC=F?range=2d&interval=1d',
       { timeout: 10000, headers: { 'User-Agent': 'Mozilla/5.0' } }
     );
-    const bolsaNY = dataCafe.chart.result[0].meta.regularMarketPrice;
+    const bolsaNY = dataCafe.chart.result[0].indicators.quote[0].close[0];
 
     // TRM (COP/USD)
     const { data: dataTRM } = await axios.get(
@@ -38,7 +38,6 @@ async function scrapeCafe() {
     resultado.error = err.message;
   }
 
-  // Fórmula FNC: precio carga = bolsa_ny (¢/lb) × 2.2046 × 125kg × TRM / 100
   resultado.precio_carga = Math.round(resultado.bolsa_ny * resultado.tasa_cambio * 2.2022);
   resultado.precio_kg = Math.round(resultado.precio_carga / 125);
   resultado.precio_arroba = Math.round(resultado.precio_kg * 12.5);
