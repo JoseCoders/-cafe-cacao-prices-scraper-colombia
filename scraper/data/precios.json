@@ -1,11 +1,11 @@
 {
-  "generado": "2026-05-22T02:42:14.750Z",
+  "generado": "2026-05-22T02:45:40.776Z",
   "cafe": {
     "fuente": "ICE Futures / Yahoo Finance",
     "en_vivo": true,
     "bolsa_ny": 268.29998779296875,
     "tasa_cambio": 3681.74,
-    "timestamp": "2026-05-22T02:42:14.630Z",
+    "timestamp": "2026-05-22T02:45:40.525Z",
     "precio_carga": 2175357,
     "precio_kg": 17403,
     "precio_arroba": 217538,
@@ -16,7 +16,7 @@
     "en_vivo": true,
     "precio_usd_ton": 3889,
     "tasa_cambio": 3681.74,
-    "timestamp": "2026-05-22T02:42:14.669Z",
+    "timestamp": "2026-05-22T02:45:40.564Z",
     "precio_cop_ton": 14318287,
     "precio_cop_kg": 14318,
     "precio_arroba": 178975,
