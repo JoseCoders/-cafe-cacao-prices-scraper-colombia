@@ -15,12 +15,12 @@ async function scrapeCacao() {
   };
 
   try {
-    // Precio cacao (USD/ton)
+    // Precio cacao - cierre del día anterior
     const { data: dataCacao } = await axios.get(
-      'https://query1.finance.yahoo.com/v8/finance/chart/CC=F',
+      'https://query1.finance.yahoo.com/v8/finance/chart/CC=F?range=2d&interval=1d',
       { timeout: 10000, headers: { 'User-Agent': 'Mozilla/5.0' } }
     );
-    const usdTon = dataCacao.chart.result[0].meta.regularMarketPrice;
+    const usdTon = dataCacao.chart.result[0].indicators.quote[0].close[0];
 
     // TRM (COP/USD)
     const { data: dataTRM } = await axios.get(
