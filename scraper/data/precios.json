@@ -1,11 +1,11 @@
 {
-  "generado": "2026-05-24T08:28:24.215Z",
+  "generado": "2026-05-24T13:24:16.701Z",
   "cafe": {
     "fuente": "FNC - Federación Nacional de Cafeteros",
     "en_vivo": true,
     "bolsa_ny": 272.35,
-    "tasa_cambio": 3655.16,
-    "timestamp": "2026-05-24T08:28:19.334Z",
+    "tasa_cambio": 3683.36,
+    "timestamp": "2026-05-24T13:24:15.662Z",
     "precio_carga": 2200000,
     "precio_kg": 17600,
     "precio_arroba": 220000,
@@ -16,7 +16,7 @@
     "en_vivo": true,
     "precio_usd_ton": 3886,
     "tasa_cambio": 3701.37,
-    "timestamp": "2026-05-24T08:28:19.373Z",
+    "timestamp": "2026-05-24T13:24:15.705Z",
     "precio_cop_ton": 14383524,
     "precio_cop_kg": 14384,
     "precio_arroba": 179800,
