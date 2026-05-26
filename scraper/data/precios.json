@@ -1,25 +1,26 @@
 {
-  "generado": "2026-05-26T15:24:32.192Z",
+  "generado": "2026-05-26T20:08:34.696Z",
   "cafe": {
     "fuente": "FNC - Federación Nacional de Cafeteros",
-    "en_vivo": true,
-    "bolsa_ny": 272.35,
-    "tasa_cambio": 3641.71,
-    "timestamp": "2026-05-26T15:24:31.011Z",
-    "precio_carga": 2200000,
-    "precio_kg": 17600,
-    "precio_arroba": 220000,
-    "semaforo": "alto"
+    "en_vivo": false,
+    "bolsa_ny": 225,
+    "tasa_cambio": 3666.36,
+    "timestamp": "2026-05-26T20:08:33.818Z",
+    "error": "read ECONNRESET",
+    "precio_carga": 1580000,
+    "precio_kg": 12640,
+    "precio_arroba": 158000,
+    "semaforo": "normal"
   },
   "cacao": {
     "fuente": "ICE Futures / Yahoo Finance",
     "en_vivo": true,
-    "precio_usd_ton": 4172,
+    "precio_usd_ton": 4152,
     "tasa_cambio": 3701.37,
-    "timestamp": "2026-05-26T15:24:31.050Z",
-    "precio_cop_ton": 15442116,
-    "precio_cop_kg": 15442,
-    "precio_arroba": 193025,
+    "timestamp": "2026-05-26T20:08:33.855Z",
+    "precio_cop_ton": 15368088,
+    "precio_cop_kg": 15368,
+    "precio_arroba": 192100,
     "semaforo": "normal"
   }
 }
