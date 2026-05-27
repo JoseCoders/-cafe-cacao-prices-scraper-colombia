@@ -29,7 +29,7 @@ const { data: dataTRM } = await axios.get(
   'https://www.datos.gov.co/resource/mcec-87by.json?$limit=2&$order=vigenciadesde DESC',
   { timeout: 10000, headers: { 'User-Agent': 'Mozilla/5.0' } }
 );
-const trm = parseFloat(dataTRM[1].valor);
+const trm = parseFloat(dataTRM[0].valor);
 
     if (usdTon && trm) {
       resultado.precio_usd_ton = usdTon;
