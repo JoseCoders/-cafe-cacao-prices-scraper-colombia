@@ -56,7 +56,7 @@ async function scrapeCafe() {
 
  // ✅ NUEVO — Extraer precios por ciudad
       const ciudades = [];
-      const lineaRegex = /(ARMENIA|BOGOT.|BUCARAMANGA|BUGA|CHINCHI|C.CUTA|IBAGU.|MANIZALES|MEDELL.N|NEIVA|PAMPLONA|PASTO|PEREIRA|POPAY.N|SANTA MARTA|VALLEDUPAR)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)/g;
+      const lineaRegex = /(ARMENIA|BOGOT[AÁ]|BUCARAMANGA|BUGA|CHINCHI[NÑ][AÁ]|C[UÚ]CUTA|IBAGU[EÉ]|MANIZALES|MEDELL[IÍ]N|NEIVA|PAMPLONA|PASTO|PEREIRA|POPAY[AÁ]N|SANTA MARTA|VALLEDUPAR)([\d,]+)([\d,]+)([\d,]+)/g;
       let match;
       while ((match = lineaRegex.exec(text)) !== null) {
         ciudades.push({
