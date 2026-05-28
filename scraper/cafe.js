@@ -56,21 +56,22 @@ async function scrapeCafe() {
 
  // ✅ NUEVO — Extraer precios por ciudad
       const ciudades = [];
-      const lineaRegex = /(ARMENIA|BOGOT[AÁ]|BUCARAMANGA|BUGA|CHINCHI[NÑ][AÁ]|C[UÚ]CUTA|IBAGU[EÉ]|MANIZALES|MEDELL[IÍ]N|NEIVA|PAMPLONA|PASTO|PEREIRA|POPAY[AÁ]N|SANTA MARTA|VALLEDUPAR)([\d,]+)([\d,]+)([\d,]+)/g;
-      let match;
-      while ((match = lineaRegex.exec(text)) !== null) {
-        ciudades.push({
-          ciudad: match[1],
-          carga:  parseInt(match[2].replace(/,/g, '')),
-          kg:     parseInt(match[3].replace(/,/g, '')),
-          arroba: parseInt(match[4].replace(/,/g, '')),
-        });
-      }
-      if (ciudades.length > 0) {
-        resultado.ciudades = ciudades;
-        console.log('[FNC] Ciudades encontradas:', ciudades.length);
-      }
-      // ✅ FIN NUEVO
+      const lineaRegex = /(ARMENIA|BOGOT[AÁ]|BUCARAMANGA|BUGA|CHINCHI[NÑ][AÁ]|C[UÚ]CUTA|IBAGU[EÉ]|MANIZALES|MEDELL[IÍ]N|NEIVA|PAMPLONA|PASTO|PEREIRA|POPAY[AÁ]N|SANTA MARTA|VALLEDUPAR)(\d{1,3}(?:,\d{3})+)(\d{1,3}(?:,\d{3})*)(\d{1,3}(?:,\d{3})*)/g;
+let match;
+while ((match = lineaRegex.exec(text)) !== null) {
+  const carga  = parseInt(match[2].replace(/,/g, ''));
+  const kg     = parseInt(match[3].replace(/,/g, ''));
+  const arroba = parseInt(match[4].replace(/,/g, ''));
+  // Solo agrega si los valores son razonables
+  if (carga > 1000000 && kg > 10000 && arroba > 100000) {
+    ciudades.push({ ciudad: match[1], carga, kg, arroba });
+  }
+}
+if (ciudades.length > 0) {
+  resultado.ciudades = ciudades;
+  console.log('[FNC] Ciudades encontradas:', ciudades.length);
+}
+// ✅ FIN NUEVO
 
 
 
