@@ -27,6 +27,9 @@ async function scrapeCafe() {
 
     const { text } = await pdf(pdfBuffer);
 
+    // 👇 AGREGAR ESTA LÍNEA TEMPORAL
+     console.log('[FNC] TEXTO PDF CIUDADES:', text.substring(1500, 3000));
+
     // Extraer precio por carga FR94
     // El PDF dice: "Precio total por carga de 125 Kg de pergamino seco FR 94  2,218,000 COP"
     const matchCarga = text.match(
