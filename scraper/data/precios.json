@@ -1,14 +1,112 @@
 {
-  "generado": "2026-05-28T00:28:50.921Z",
+  "generado": "2026-05-28T00:32:25.597Z",
   "cafe": {
     "fuente": "FNC - Federación Nacional de Cafeteros",
     "en_vivo": true,
     "bolsa_ny": 269.85,
     "tasa_cambio": 3625.99,
-    "timestamp": "2026-05-28T00:28:49.712Z",
+    "timestamp": "2026-05-28T00:32:24.312Z",
     "precio_carga": 2170000,
     "precio_kg": 17360,
     "precio_arroba": 217000,
+    "ciudades": [
+      {
+        "ciudad": "ARMENIA",
+        "carga": 2170500173642170,
+        "kg": 5,
+        "arroba": 0
+      },
+      {
+        "ciudad": "BOGOTÁ",
+        "carga": 2169250173542169,
+        "kg": 2,
+        "arroba": 5
+      },
+      {
+        "ciudad": "BUCARAMANGA",
+        "carga": 2168875173512168,
+        "kg": 8,
+        "arroba": 8
+      },
+      {
+        "ciudad": "BUGA",
+        "carga": 2171250173702171,
+        "kg": 2,
+        "arroba": 5
+      },
+      {
+        "ciudad": "CHINCHINÁ",
+        "carga": 2170375173632170,
+        "kg": 3,
+        "arroba": 8
+      },
+      {
+        "ciudad": "CÚCUTA",
+        "carga": 2168375173472168,
+        "kg": 3,
+        "arroba": 8
+      },
+      {
+        "ciudad": "IBAGUÉ",
+        "carga": 2169625173572169,
+        "kg": 6,
+        "arroba": 3
+      },
+      {
+        "ciudad": "MANIZALES",
+        "carga": 2170375173632170,
+        "kg": 3,
+        "arroba": 8
+      },
+      {
+        "ciudad": "MEDELLÍN",
+        "carga": 2169625173572169,
+        "kg": 6,
+        "arroba": 3
+      },
+      {
+        "ciudad": "NEIVA",
+        "carga": 2168750173502168,
+        "kg": 7,
+        "arroba": 5
+      },
+      {
+        "ciudad": "PAMPLONA",
+        "carga": 2168500173482168,
+        "kg": 5,
+        "arroba": 0
+      },
+      {
+        "ciudad": "PASTO",
+        "carga": 2168500173482168,
+        "kg": 5,
+        "arroba": 0
+      },
+      {
+        "ciudad": "PEREIRA",
+        "carga": 2170375173632170,
+        "kg": 3,
+        "arroba": 8
+      },
+      {
+        "ciudad": "POPAYÁN",
+        "carga": 2170625173652170,
+        "kg": 6,
+        "arroba": 3
+      },
+      {
+        "ciudad": "SANTA MARTA",
+        "carga": 2172125173772172,
+        "kg": 1,
+        "arroba": 3
+      },
+      {
+        "ciudad": "VALLEDUPAR",
+        "carga": 2169750173582169,
+        "kg": 7,
+        "arroba": 5
+      }
+    ],
     "semaforo": "alto"
   },
   "cacao": {
@@ -16,7 +114,7 @@
     "en_vivo": true,
     "precio_usd_ton": 4169,
     "tasa_cambio": 3631.57,
-    "timestamp": "2026-05-28T00:28:49.751Z",
+    "timestamp": "2026-05-28T00:32:24.350Z",
     "precio_cop_ton": 15140015,
     "precio_cop_kg": 15140,
     "precio_arroba": 189250,
