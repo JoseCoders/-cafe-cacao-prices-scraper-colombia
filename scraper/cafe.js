@@ -50,6 +50,28 @@ async function scrapeCafe() {
       resultado.en_vivo       = true;
 
       console.log('[FNC] Precio carga:', precioCarga, '| Bolsa NY:', bolsaNY);
+
+ // ✅ NUEVO — Extraer precios por ciudad
+      const ciudades = [];
+      const lineaRegex = /^(ARMENIA|BOGOT[AÁ]|BUCARAMANGA|BUGA|CHINchin[AÁ]|C[UÚ]CUTA|IBAGU[EÉ]|MANIZALES|MEDELL[IÍ]N|NEIVA|PAMPLONA|PASTO|PEREIRA|POPAY[AÁ]N|SANTA MARTA|VALLEDUPAR)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)/gm;
+      let match;
+      while ((match = lineaRegex.exec(text)) !== null) {
+        ciudades.push({
+          ciudad: match[1],
+          carga:  parseInt(match[2].replace(/,/g, '')),
+          kg:     parseInt(match[3].replace(/,/g, '')),
+          arroba: parseInt(match[4].replace(/,/g, '')),
+        });
+      }
+      if (ciudades.length > 0) {
+        resultado.ciudades = ciudades;
+        console.log('[FNC] Ciudades encontradas:', ciudades.length);
+      }
+      // ✅ FIN NUEVO
+
+
+
+      
     } else {
       console.warn('[FNC] No se encontraron datos en el PDF, usando referencia.');
       _usarReferencia(resultado);
