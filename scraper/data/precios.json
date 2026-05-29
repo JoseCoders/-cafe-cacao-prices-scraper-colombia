@@ -1,124 +1,123 @@
 {
-  "generado": "2026-05-29T15:27:23.680Z",
+  "generado": "2026-05-29T20:24:10.317Z",
   "cafe": {
     "fuente": "FNC - Federación Nacional de Cafeteros",
     "en_vivo": true,
-    "bolsa_ny": 274.25,
-    "tasa_cambio": 3682.25,
-    "timestamp": "2026-05-29T15:27:13.414Z",
-    "precio_carga": 2210000,
-    "precio_kg": 17680,
-    "precio_arroba": 221000,
+    "bolsa_ny": 265.6,
+    "tasa_cambio": 3672.47,
+    "timestamp": "2026-05-29T20:24:03.981Z",
+    "precio_carga": 2175000,
+    "precio_kg": 17400,
+    "precio_arroba": 217500,
     "ciudades": [
       {
         "ciudad": "ARMENIA",
-        "carga": 2210500,
-        "kg": 17684,
-        "arroba": 221050
+        "carga": 2175500,
+        "kg": 17404,
+        "arroba": 217550
       },
       {
         "ciudad": "BOGOTÁ",
-        "carga": 2209250,
-        "kg": 17674,
-        "arroba": 220925
+        "carga": 2174250,
+        "kg": 17394,
+        "arroba": 217425
       },
       {
         "ciudad": "BUCARAMANGA",
-        "carga": 2208875,
-        "kg": 17671,
-        "arroba": 220888
+        "carga": 2173875,
+        "kg": 17391,
+        "arroba": 217388
       },
       {
         "ciudad": "BUGA",
-        "carga": 2211250,
-        "kg": 17690,
-        "arroba": 221125
+        "carga": 2176250,
+        "kg": 17410,
+        "arroba": 217625
       },
       {
         "ciudad": "CHINCHINÁ",
-        "carga": 2210375,
-        "kg": 17683,
-        "arroba": 221038
+        "carga": 2175375,
+        "kg": 17403,
+        "arroba": 217538
       },
       {
         "ciudad": "CÚCUTA",
-        "carga": 2208375,
-        "kg": 17667,
-        "arroba": 220838
+        "carga": 2173375,
+        "kg": 17387,
+        "arroba": 217338
       },
       {
         "ciudad": "IBAGUÉ",
-        "carga": 2209625,
-        "kg": 17677,
-        "arroba": 220963
+        "carga": 2174625,
+        "kg": 17397,
+        "arroba": 217463
       },
       {
         "ciudad": "MANIZALES",
-        "carga": 2210375,
-        "kg": 17683,
-        "arroba": 221038
+        "carga": 2175375,
+        "kg": 17403,
+        "arroba": 217538
       },
       {
         "ciudad": "MEDELLÍN",
-        "carga": 2209625,
-        "kg": 17677,
-        "arroba": 220963
+        "carga": 2174625,
+        "kg": 17397,
+        "arroba": 217463
       },
       {
         "ciudad": "NEIVA",
-        "carga": 2208750,
-        "kg": 17670,
-        "arroba": 220875
+        "carga": 2173750,
+        "kg": 17390,
+        "arroba": 217375
       },
       {
         "ciudad": "PAMPLONA",
-        "carga": 2208500,
-        "kg": 17668,
-        "arroba": 220850
+        "carga": 2173500,
+        "kg": 17388,
+        "arroba": 217350
       },
       {
         "ciudad": "PASTO",
-        "carga": 2208500,
-        "kg": 17668,
-        "arroba": 220850
+        "carga": 2173500,
+        "kg": 17388,
+        "arroba": 217350
       },
       {
         "ciudad": "PEREIRA",
-        "carga": 2210375,
-        "kg": 17683,
-        "arroba": 221038
+        "carga": 2175375,
+        "kg": 17403,
+        "arroba": 217538
       },
       {
         "ciudad": "POPAYÁN",
-        "carga": 2210625,
-        "kg": 17685,
-        "arroba": 221063
+        "carga": 2175625,
+        "kg": 17405,
+        "arroba": 217563
       },
       {
         "ciudad": "SANTA MARTA",
-        "carga": 2212125,
-        "kg": 17697,
-        "arroba": 221213
+        "carga": 2177125,
+        "kg": 17417,
+        "arroba": 217713
       },
       {
         "ciudad": "VALLEDUPAR",
-        "carga": 2209750,
-        "kg": 17678,
-        "arroba": 220975
+        "carga": 2174750,
+        "kg": 17398,
+        "arroba": 217475
       }
     ],
     "semaforo": "alto"
   },
   "cacao": {
     "fuente": "ICE Futures / Yahoo Finance",
-    "en_vivo": false,
-    "precio_usd_ton": 8800,
-    "tasa_cambio": 4200,
-    "timestamp": "2026-05-29T15:27:13.454Z",
-    "error": "timeout of 10000ms exceeded",
-    "precio_cop_ton": 36960000,
-    "precio_cop_kg": 36960,
-    "precio_arroba": 462000,
-    "semaforo": "alto"
+    "en_vivo": true,
+    "precio_usd_ton": 4099,
+    "tasa_cambio": 3646.58,
+    "timestamp": "2026-05-29T20:24:04.020Z",
+    "precio_cop_ton": 14947331,
+    "precio_cop_kg": 14947,
+    "precio_arroba": 186838,
+    "semaforo": "normal"
   }
 }
