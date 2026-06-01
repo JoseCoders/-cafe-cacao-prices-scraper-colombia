@@ -1,119 +1,151 @@
-const axios = require('axios');
-const pdf = require('pdf-parse');
+const axios   = require('axios');
+const cheerio = require('cheerio');
 
-const REFERENCIA = {
-  bolsa_ny: 225,
-  tasa_cambio: 4200,
+// Diferenciales logísticos fijos por ciudad (fuente: PDF FNC, no cambian)
+const DIFERENCIAL_CIUDAD = {
+  'ARMENIA':      500,
+  'BOGOTÁ':      -750,
+  'BUCARAMANGA': -1_125,
+  'BUGA':         1_250,
+  'CHINCHINÁ':    375,
+  'CÚCUTA':      -1_625,
+  'IBAGUÉ':      -375,
+  'MANIZALES':    375,
+  'MEDELLÍN':    -375,
+  'NEIVA':       -1_250,
+  'PAMPLONA':   -1_500,
+  'PASTO':      -1_500,
+  'PEREIRA':      375,
+  'POPAYÁN':      625,
+  'SANTA MARTA':  2_125,
+  'VALLEDUPAR':  -250,
 };
 
-const PDF_FNC_URL = 'https://federaciondecafeteros.org/wp-content/uploads/2026/03/precio_cafe.pdf';
+// Tabla física FR (kg excelso y pasilla por carga de 125kg)
+const TABLA_FR = {
+  88:  { excelso: 99.43, pasilla: 2.13 },
+  89:  { excelso: 98.31, pasilla: 4.20 },
+  90:  { excelso: 97.22, pasilla: 4.94 },
+  91:  { excelso: 96.15, pasilla: 5.55 },
+  92:  { excelso: 95.11, pasilla: 6.45 },
+  93:  { excelso: 94.09, pasilla: 7.19 },
+  94:  { excelso: 93.09, pasilla: 8.16 },
+  95:  { excelso: 92.11, pasilla: 8.93 },
+  96:  { excelso: 91.15, pasilla: 9.60 },
+  97:  { excelso: 90.21, pasilla: 10.52 },
+  98:  { excelso: 89.29, pasilla: 11.25 },
+  99:  { excelso: 88.38, pasilla: 12.16 },
+  100: { excelso: 87.50, pasilla: 12.81 },
+};
 
+const PASILLA_COP_KG = 10_000; // fijo del PDF
+
+// ── Parsear número colombiano  "$2.060.000" o "3.554,50" ────────────────────
+function parseCOP(str) {
+  // Formato: puntos como miles, coma como decimal
+  return parseFloat(str.replace(/\./g, '').replace(',', '.'));
+}
+
+// ── Calcular precio por FR dado precio excelso/kg ───────────────────────────
+function calcularFR(precioExcelsoKg, fr) {
+  const { excelso, pasilla } = TABLA_FR[fr];
+  const valorExcelso = Math.round(precioExcelsoKg * excelso);
+  const valorPasilla = Math.round(PASILLA_COP_KG  * pasilla);
+  const precioCarga  = valorExcelso + valorPasilla;
+  return {
+    fr,
+    precio_carga:  precioCarga,
+    precio_kg:     Math.round(precioCarga / 125),
+    precio_arroba: Math.round(precioCarga / 10),
+    valor_excelso: valorExcelso,
+    valor_pasilla: valorPasilla,
+  };
+}
+
+// ── Scraper principal ────────────────────────────────────────────────────────
 async function scrapeCafe() {
   const resultado = {
-    fuente: 'FNC - Federación Nacional de Cafeteros',
-    en_vivo: false,
-    bolsa_ny: REFERENCIA.bolsa_ny,
-    tasa_cambio: REFERENCIA.tasa_cambio,
+    fuente:    'FNC - Federación Nacional de Cafeteros',
+    url:       'https://federaciondecafeteros.org/transparencia-fepc/',
+    en_vivo:   false,
     timestamp: new Date().toISOString(),
   };
 
+  // ── 1. Scraping HTML de la FNC (precio oficial del día) ───────────────────
   try {
-    // Descargar PDF oficial de la FNC
-    const { data: pdfBuffer } = await axios.get(PDF_FNC_URL, {
-      responseType: 'arraybuffer',
-      timeout: 20000,
-      headers: { 'User-Agent': 'Mozilla/5.0' },
-    });
-
-    const { text } = await pdf(pdfBuffer);
-
-    // 👇 AGREGAR ESTA LÍNEA TEMPORAL
-     console.log('[FNC] TEXTO PDF CIUDADES:', text.substring(1500, 3000));
-
-    // Extraer precio por carga FR94
-    // El PDF dice: "Precio total por carga de 125 Kg de pergamino seco FR 94  2,218,000 COP"
-    const matchCarga = text.match(
-      /Precio total por carga de 125 Kg.*?FR\s*94\s*([\d,]+)\s*COP/i
+    const { data: html } = await axios.get(
+      'https://federaciondecafeteros.org/transparencia-fepc/',
+      { timeout: 15000, headers: { 'User-Agent': 'Mozilla/5.0' } }
     );
 
-    // Extraer bolsa Nueva York
-    // El PDF dice: "Cierre contrato C Nueva York 273.40 USCent/Lb"
-    const matchBolsa = text.match(
-      /Cierre contrato C Nueva York\s*([\d.]+)\s*USCent/i
-    );
+    const $ = cheerio.load(html);
+    const texto = $('body').text();
 
-    if (matchCarga && matchBolsa) {
-      const precioCarga = parseInt(matchCarga[1].replace(/,/g, ''), 10);
-      const bolsaNY = parseFloat(matchBolsa[1]);
+    // Precio interno de referencia: $2.060.000
+    const mPrecio = texto.match(/Precio interno de referencia:\s*\$([\d.]+)/);
+    // Bolsa de NY: $260,60
+    const mBolsa  = texto.match(/Bolsa de NY:\s*\$([\d.,]+)/);
+    // Tasa de cambio: 3.554,50
+    const mTasa   = texto.match(/Tasa de cambio:\s*([\d.,]+)/);
+    // Fecha: 2026-06-01
+    const mFecha  = texto.match(/Fecha:\s*(\d{4}-\d{2}-\d{2})/);
 
-      resultado.precio_carga  = precioCarga;
-      resultado.precio_kg     = Math.round(precioCarga / 125);
-      resultado.precio_arroba = Math.round(precioCarga / 10);
-      resultado.bolsa_ny      = bolsaNY;
-      resultado.en_vivo       = true;
+    if (!mPrecio) throw new Error('No se encontró precio en el HTML');
 
-      console.log('[FNC] Precio carga:', precioCarga, '| Bolsa NY:', bolsaNY);
+    resultado.precio_carga  = parseCOP(mPrecio[1]);
+    resultado.precio_kg     = Math.round(resultado.precio_carga / 125);
+    resultado.precio_arroba = Math.round(resultado.precio_carga / 10);
+    resultado.bolsa_ny      = mBolsa ? parseCOP(mBolsa[1]) : null;
+    resultado.tasa_cambio   = mTasa  ? parseCOP(mTasa[1])  : null;
+    resultado.fecha_precio  = mFecha ? mFecha[1] : null;
+    resultado.en_vivo       = true;
 
- // ✅ NUEVO — Extraer precios por ciudad
-      const ciudades = [];
-      const lineaRegex = /(ARMENIA|BOGOT[AÁ]|BUCARAMANGA|BUGA|CHINCHI[NÑ][AÁ]|C[UÚ]CUTA|IBAGU[EÉ]|MANIZALES|MEDELL[IÍ]N|NEIVA|PAMPLONA|PASTO|PEREIRA|POPAY[AÁ]N|SANTA MARTA|VALLEDUPAR)(\d{1,3}(?:,\d{3})+)(\d{1,3}(?:,\d{3})*)(\d{1,3}(?:,\d{3})*)/g;
-let match;
-while ((match = lineaRegex.exec(text)) !== null) {
-  const carga  = parseInt(match[2].replace(/,/g, ''));
-  const kg     = parseInt(match[3].replace(/,/g, ''));
-  const arroba = parseInt(match[4].replace(/,/g, ''));
-  // Solo agrega si los valores son razonables
-  if (carga > 1000000 && kg > 10000 && arroba > 100000) {
-    ciudades.push({ ciudad: match[1], carga, kg, arroba });
-  }
-}
-if (ciudades.length > 0) {
-  resultado.ciudades = ciudades;
-  console.log('[FNC] Ciudades encontradas:', ciudades.length);
-}
-// ✅ FIN NUEVO
-
-
-
-      
-    } else {
-      console.warn('[FNC] No se encontraron datos en el PDF, usando referencia.');
-      _usarReferencia(resultado);
-    }
+    console.log('[FNC] ✅ Precio carga FR94:', resultado.precio_carga);
+    console.log('[FNC] Bolsa NY:', resultado.bolsa_ny, '| TRM:', resultado.tasa_cambio);
+    console.log('[FNC] Fecha:', resultado.fecha_precio);
 
   } catch (err) {
-    console.error('[FNC] Error:', err.message);
-    resultado.error = err.message;
-    _usarReferencia(resultado);
+    console.error('[FNC HTML] ❌ Error:', err.message);
+    // Fallback con últimos valores conocidos
+    resultado.precio_carga  = 2_060_000;
+    resultado.precio_kg     = 16_480;
+    resultado.precio_arroba = 206_000;
+    resultado.bolsa_ny      = 260.60;
+    resultado.tasa_cambio   = 3_554.50;
+    resultado.en_vivo       = false;
+    resultado.error         = err.message;
   }
 
-  // TRM - siempre desde Yahoo como respaldo
-  try {
-    const { data: dataTRM } = await axios.get(
-      'https://query1.finance.yahoo.com/v8/finance/chart/COP=X',
-      { timeout: 10000, headers: { 'User-Agent': 'Mozilla/5.0' } }
-    );
-    const trm = dataTRM.chart.result[0].meta.regularMarketPrice;
-    if (trm) resultado.tasa_cambio = trm;
-  } catch (e) {
-    console.warn('[TRM] Error obteniendo TRM:', e.message);
-  }
+  // ── 2. Calcular precio excelso/kg para la tabla FR ────────────────────────
+  // Despejamos: precioBase = precioExcelsoKg × 93.09 + 10000 × 8.16
+  // → precioExcelsoKg = (precioBase - 81600) / 93.09
+  const precioExcelsoKg = (resultado.precio_carga - (PASILLA_COP_KG * TABLA_FR[94].pasilla)) / TABLA_FR[94].excelso;
 
+  // ── 3. Tabla completa FR 88-100 ───────────────────────────────────────────
+  resultado.tabla_fr = Object.keys(TABLA_FR).map(fr =>
+    calcularFR(precioExcelsoKg, parseInt(fr))
+  );
+
+  // ── 4. Precios por ciudad ─────────────────────────────────────────────────
+  resultado.ciudades = Object.entries(DIFERENCIAL_CIUDAD).map(([ciudad, diff]) => {
+    const carga = resultado.precio_carga + diff;
+    return {
+      ciudad,
+      carga,
+      kg:     Math.round(carga / 125),
+      arroba: Math.round(carga / 10),
+    };
+  });
+
+  // ── 5. Semáforo ───────────────────────────────────────────────────────────
   resultado.semaforo = getSemaforoCafe(resultado.precio_carga);
+
   return resultado;
 }
 
-function _usarReferencia(resultado) {
-  resultado.precio_carga  = 1_580_000;
-  resultado.precio_kg     = 12_640;
-  resultado.precio_arroba = 158_000;
-  resultado.bolsa_ny      = REFERENCIA.bolsa_ny;
-  resultado.en_vivo       = false;
-}
-
-function getSemaforoCafe(precioCarga) {
-  if (precioCarga >= 1_700_000) return 'alto';
-  if (precioCarga >= 1_200_000) return 'normal';
+function getSemaforoCafe(p) {
+  if (p >= 2_500_000) return 'alto';
+  if (p >= 1_800_000) return 'normal';
   return 'bajo';
 }
 
