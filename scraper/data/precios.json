@@ -1,10 +1,10 @@
 {
-  "generado": "2026-07-15T10:43:52.565Z",
+  "generado": "2026-07-15T13:20:58.437Z",
   "cafe": {
     "fuente": "FNC - Federación Nacional de Cafeteros",
     "url": "https://federaciondecafeteros.org/transparencia-fepc/",
     "en_vivo": true,
-    "timestamp": "2026-07-15T10:43:47.516Z",
+    "timestamp": "2026-07-15T13:20:52.729Z",
     "precio_carga": 2265000,
     "precio_kg": 18120,
     "precio_arroba": 226500,
@@ -222,7 +222,7 @@
     "en_vivo": true,
     "precio_usd_ton": 5660,
     "tasa_cambio": 3252.11,
-    "timestamp": "2026-07-15T10:43:47.564Z",
+    "timestamp": "2026-07-15T13:20:52.767Z",
     "precio_cop_ton": 18406943,
     "precio_cop_kg": 18407,
     "precio_arroba": 230088,
