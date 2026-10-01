@@ -1,218 +1,218 @@
 {
-  "generado": "2026-10-01T12:11:19.923Z",
+  "generado": "2026-10-01T20:01:29.346Z",
   "cafe": {
     "fuente": "FNC - Federación Nacional de Cafeteros",
     "url": "https://federaciondecafeteros.org/transparencia-fepc/",
     "en_vivo": true,
-    "timestamp": "2026-10-01T12:11:14.337Z",
-    "precio_carga": 2170000,
-    "precio_kg": 17360,
-    "precio_arroba": 217000,
-    "bolsa_ny": 290.7,
-    "tasa_cambio": 3307.5,
-    "fecha_precio": "2026-09-30",
+    "timestamp": "2026-10-01T20:01:23.537Z",
+    "precio_carga": 2155000,
+    "precio_kg": 17240,
+    "precio_arroba": 215500,
+    "bolsa_ny": 288.25,
+    "tasa_cambio": 3310,
+    "fecha_precio": "2026-10-01",
     "tabla_fr": [
       {
         "fr": 88,
-        "precio_carga": 2251933,
-        "precio_kg": 18015,
-        "precio_arroba": 225193,
-        "valor_excelso": 2230633,
+        "precio_carga": 2235911,
+        "precio_kg": 17887,
+        "precio_arroba": 223591,
+        "valor_excelso": 2214611,
         "valor_pasilla": 21300
       },
       {
         "fr": 89,
-        "precio_carga": 2247507,
-        "precio_kg": 17980,
-        "precio_arroba": 224751,
-        "valor_excelso": 2205507,
+        "precio_carga": 2231665,
+        "precio_kg": 17853,
+        "precio_arroba": 223167,
+        "valor_excelso": 2189665,
         "valor_pasilla": 42000
       },
       {
         "fr": 90,
-        "precio_carga": 2230453,
-        "precio_kg": 17844,
-        "precio_arroba": 223045,
-        "valor_excelso": 2181053,
+        "precio_carga": 2214788,
+        "precio_kg": 17718,
+        "precio_arroba": 221479,
+        "valor_excelso": 2165388,
         "valor_pasilla": 49400
       },
       {
         "fr": 91,
-        "precio_carga": 2212549,
-        "precio_kg": 17700,
-        "precio_arroba": 221255,
-        "valor_excelso": 2157049,
+        "precio_carga": 2197056,
+        "precio_kg": 17576,
+        "precio_arroba": 219706,
+        "valor_excelso": 2141556,
         "valor_pasilla": 55500
       },
       {
         "fr": 92,
-        "precio_carga": 2198217,
-        "precio_kg": 17586,
-        "precio_arroba": 219822,
-        "valor_excelso": 2133717,
+        "precio_carga": 2182892,
+        "precio_kg": 17463,
+        "precio_arroba": 218289,
+        "valor_excelso": 2118392,
         "valor_pasilla": 64500
       },
       {
         "fr": 93,
-        "precio_carga": 2182734,
-        "precio_kg": 17462,
-        "precio_arroba": 218273,
-        "valor_excelso": 2110834,
+        "precio_carga": 2167573,
+        "precio_kg": 17341,
+        "precio_arroba": 216757,
+        "valor_excelso": 2095673,
         "valor_pasilla": 71900
       },
       {
         "fr": 94,
-        "precio_carga": 2170000,
-        "precio_kg": 17360,
-        "precio_arroba": 217000,
-        "valor_excelso": 2088400,
+        "precio_carga": 2155000,
+        "precio_kg": 17240,
+        "precio_arroba": 215500,
+        "valor_excelso": 2073400,
         "valor_pasilla": 81600
       },
       {
         "fr": 95,
-        "precio_carga": 2155714,
-        "precio_kg": 17246,
-        "precio_arroba": 215571,
-        "valor_excelso": 2066414,
+        "precio_carga": 2140872,
+        "precio_kg": 17127,
+        "precio_arroba": 214087,
+        "valor_excelso": 2051572,
         "valor_pasilla": 89300
       },
       {
         "fr": 96,
-        "precio_carga": 2140878,
-        "precio_kg": 17127,
-        "precio_arroba": 214088,
-        "valor_excelso": 2044878,
+        "precio_carga": 2126190,
+        "precio_kg": 17010,
+        "precio_arroba": 212619,
+        "valor_excelso": 2030190,
         "valor_pasilla": 96000
       },
       {
         "fr": 97,
-        "precio_carga": 2128989,
-        "precio_kg": 17032,
-        "precio_arroba": 212899,
-        "valor_excelso": 2023789,
+        "precio_carga": 2114454,
+        "precio_kg": 16916,
+        "precio_arroba": 211445,
+        "valor_excelso": 2009254,
         "valor_pasilla": 105200
       },
       {
         "fr": 98,
-        "precio_carga": 2115650,
-        "precio_kg": 16925,
-        "precio_arroba": 211565,
-        "valor_excelso": 2003150,
+        "precio_carga": 2101262,
+        "precio_kg": 16810,
+        "precio_arroba": 210126,
+        "valor_excelso": 1988762,
         "valor_pasilla": 112500
       },
       {
         "fr": 99,
-        "precio_carga": 2104335,
-        "precio_kg": 16835,
-        "precio_arroba": 210434,
-        "valor_excelso": 1982735,
+        "precio_carga": 2090094,
+        "precio_kg": 16721,
+        "precio_arroba": 209009,
+        "valor_excelso": 1968494,
         "valor_pasilla": 121600
       },
       {
         "fr": 100,
-        "precio_carga": 2091093,
-        "precio_kg": 16729,
-        "precio_arroba": 209109,
-        "valor_excelso": 1962993,
+        "precio_carga": 2076994,
+        "precio_kg": 16616,
+        "precio_arroba": 207699,
+        "valor_excelso": 1948894,
         "valor_pasilla": 128100
       }
     ],
     "ciudades": [
       {
         "ciudad": "ARMENIA",
-        "carga": 2170500,
-        "kg": 17364,
-        "arroba": 217050
+        "carga": 2155500,
+        "kg": 17244,
+        "arroba": 215550
       },
       {
         "ciudad": "BOGOTÁ",
-        "carga": 2169250,
-        "kg": 17354,
-        "arroba": 216925
+        "carga": 2154250,
+        "kg": 17234,
+        "arroba": 215425
       },
       {
         "ciudad": "BUCARAMANGA",
-        "carga": 2168875,
-        "kg": 17351,
-        "arroba": 216888
+        "carga": 2153875,
+        "kg": 17231,
+        "arroba": 215388
       },
       {
         "ciudad": "BUGA",
-        "carga": 2171250,
-        "kg": 17370,
-        "arroba": 217125
+        "carga": 2156250,
+        "kg": 17250,
+        "arroba": 215625
       },
       {
         "ciudad": "CHINCHINÁ",
-        "carga": 2170375,
-        "kg": 17363,
-        "arroba": 217038
+        "carga": 2155375,
+        "kg": 17243,
+        "arroba": 215538
       },
       {
         "ciudad": "CÚCUTA",
-        "carga": 2168375,
-        "kg": 17347,
-        "arroba": 216838
+        "carga": 2153375,
+        "kg": 17227,
+        "arroba": 215338
       },
       {
         "ciudad": "IBAGUÉ",
-        "carga": 2169625,
-        "kg": 17357,
-        "arroba": 216963
+        "carga": 2154625,
+        "kg": 17237,
+        "arroba": 215463
       },
       {
         "ciudad": "MANIZALES",
-        "carga": 2170375,
-        "kg": 17363,
-        "arroba": 217038
+        "carga": 2155375,
+        "kg": 17243,
+        "arroba": 215538
       },
       {
         "ciudad": "MEDELLÍN",
-        "carga": 2169625,
-        "kg": 17357,
-        "arroba": 216963
+        "carga": 2154625,
+        "kg": 17237,
+        "arroba": 215463
       },
       {
         "ciudad": "NEIVA",
-        "carga": 2168750,
-        "kg": 17350,
-        "arroba": 216875
+        "carga": 2153750,
+        "kg": 17230,
+        "arroba": 215375
       },
       {
         "ciudad": "PAMPLONA",
-        "carga": 2168500,
-        "kg": 17348,
-        "arroba": 216850
+        "carga": 2153500,
+        "kg": 17228,
+        "arroba": 215350
       },
       {
         "ciudad": "PASTO",
-        "carga": 2168500,
-        "kg": 17348,
-        "arroba": 216850
+        "carga": 2153500,
+        "kg": 17228,
+        "arroba": 215350
       },
       {
         "ciudad": "PEREIRA",
-        "carga": 2170375,
-        "kg": 17363,
-        "arroba": 217038
+        "carga": 2155375,
+        "kg": 17243,
+        "arroba": 215538
       },
       {
         "ciudad": "POPAYÁN",
-        "carga": 2170625,
-        "kg": 17365,
-        "arroba": 217063
+        "carga": 2155625,
+        "kg": 17245,
+        "arroba": 215563
       },
       {
         "ciudad": "SANTA MARTA",
-        "carga": 2172125,
-        "kg": 17377,
-        "arroba": 217213
+        "carga": 2157125,
+        "kg": 17257,
+        "arroba": 215713
       },
       {
         "ciudad": "VALLEDUPAR",
-        "carga": 2169750,
-        "kg": 17358,
-        "arroba": 216975
+        "carga": 2154750,
+        "kg": 17238,
+        "arroba": 215475
       }
     ],
     "semaforo": "normal"
@@ -222,7 +222,7 @@
     "en_vivo": true,
     "precio_usd_ton": 5367,
     "tasa_cambio": 3312.84,
-    "timestamp": "2026-10-01T12:11:14.377Z",
+    "timestamp": "2026-10-01T20:01:23.573Z",
     "precio_cop_ton": 17780012,
     "precio_cop_kg": 17780,
     "precio_arroba": 222250,
